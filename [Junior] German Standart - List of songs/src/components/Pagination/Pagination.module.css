@@ -1,0 +1,5 @@
+.Page:hover {
+    color: red;
+    cursor: pointer;
+    transform: scale(1.3);
+}

@@ -1,0 +1,67 @@
+.ListTitle {
+    cursor: pointer;
+}
+
+.SongsList,
+.ListTitle  {
+    display: block;
+    position: relative;
+    width: 80%;
+    box-sizing: border-box;
+}
+
+.ListTitle ul,
+.SongsList ul {
+    margin: 0;
+    display: grid;
+    height: 100%;
+    grid-template-columns: 28% 40% 25% 7%;
+    grid-template-rows: 40px;
+    grid-gap: 1px 3px;
+
+    
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding-inline-start: 0px;
+}
+
+.ListTitle li {
+    background-color: #eee;
+    padding: 6px 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.SongsList li {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    text-align: initial;
+    padding: 0 10px;
+}
+
+.SongsList ul:nth-child(odd) li {
+    background-color: rgb(255, 251, 251);
+}
+.SongsList ul:nth-child(even) li {
+    background-color: #eee;
+}
+
+.Pagination {
+    display: flex;
+    justify-content: flex-start;
+    list-style: none;
+    padding-inline-start: 0;
+    margin: 20px 0;
+}
+
+.Pagination li {
+    margin: 0 5px;
+}
+
+.Page:hover {
+    color: red;
+    cursor: pointer;
+    transform: scale(1.3);
+}
