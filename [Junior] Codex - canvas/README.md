@@ -1,68 +1,30 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# CODEX
 
-## Available Scripts
+## Условия:
 
-In the project directory, you can run:
+- [x] Задачу необходимо решить на JavaScript.
+- [x] Ваш код JavaScript должен соответствовать требованиям последней спецификации ES2018
+- [x] Применение React или Vue категорически приветствуется!
+- [x] Поле для рисования должно быть выполнено в виде HTML-страницы (располагайте HTML элементы в соответствии с логикой вашего приложения), не используйте элемент <canvas> и его API
+- [x] Убедитесь, что программа закончена и покрыта тестами!
+  
+## Задача:
 
-### `npm start`
+Ваша задача - написать простую программу для рисования, исполняющую последовательность команд из файла Input.txt и выдающую output.txt. Используйте следующие команды:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    C w h
+    L x1 y1 x2 y2
+    R x1 y1 x2 y2
+    B x y c
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+**Canvas**: создать canvas шириной w и высотой h.
 
-### `npm test`
+**Line**: проложить линию от (x1,y1) до (x2,y2), используя для рисования псевдографический символ “x”. Поддерживаются только горизонтальные и вертикальные линии.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Rectangle**: создать прямоугольник с верхним левым углом в точке (x1,y1), нижним правым углом в точке (x2,y2). Вертикальные и горизонтальные линии должны быть отрисованы псевдографическими символами “x”.
 
-### `npm run build`
+**Bucket Fill**: залить всю область (x,y) цветом ("colour", c), аналогично тому, как работает инструмент “Заливка” в графических редакторах.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Важно: рисовать можно только при условии, что создан canvas!**
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Пример: Изучите файлы input.txt и output.txt в приложении к задаче: **path ".src/assets/"**.
