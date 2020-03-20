@@ -6,6 +6,12 @@ import TableTitle from './TableComponents/TableTitle';
 
 const Table = props => {
   const [inputFields, setInputFields] = React.useState({});
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.target.blur(); 
+    }
+  }
   
   const onSaveRow = (item) => {
     const newObj = {...inputFields};
@@ -44,6 +50,7 @@ const Table = props => {
             style={{border: 'none'}}
             type="text" 
             defaultValue={item[column]}
+            onKeyDown={(e) => handleKeyDown(e)}
             onBlur={() => onSaveRow(item)}
             onChange={(e) => setInputFields({...inputFields, [column]: e.target.value})}
           />
