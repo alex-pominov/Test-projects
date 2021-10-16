@@ -42,12 +42,12 @@ class App extends React.Component {
                 break;
             case "B":
                 const [x, y, color] = args;
-                canvas.bucketFill(...parseArgs([x, y]), color);
+                canvas.bucketFill(+x, +y, color);
                 break;
             default:
                 throw Error("Unknown command");
         }
-        this.setState({canvases: [...this.state.canvases, canvas]});
+        this.setState({canvases: [...canvases, canvas]});
     }
 
     render() {

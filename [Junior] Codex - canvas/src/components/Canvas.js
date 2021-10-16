@@ -13,21 +13,17 @@ export default class Canvas {
     }
 
     drawLine(x1, y1, x2, y2) {
-        const isVertical = y1 !== y2;
-        const isHorizontal = x1 !== x2;
+        const isVertical = x1 === x2;
+        const isHorizontal = y1 === y2;
 
         if (isVertical) {
-            if (y1 > y2) [y1, y2] = this._swap(y1, y2);
-            for (let y = y1; y <= y2; y++) {
-                const cell = this.getCell(x1, y);
-                if (!cell.isFilled()) cell.setMarkedFiller();
-            }
-        } else if (isHorizontal) {
-            if (x1 > x2) [x1, x2] = this._swap(x1, x2);
-            for (let x = x1; x <= x2; x++) {
-                const cell = this.getCell(x, y1);
-                if (!cell.isFilled()) cell.setMarkedFiller();
-            }
+            if (y1 > y2) [y1, y2] = this._vector(y1, y2);
+            for (let y = y1; y <= y2; y++) this.markCell(x1, y);
+        }
+
+        if (isHorizontal) {
+            if (x1 > x2) [x1, x2] = this._vector(x1, x2);
+            for (let x = x1; x <= x2; x++) this.markCell(x, y1);
         }
     }
 
@@ -38,23 +34,27 @@ export default class Canvas {
         this.drawLine(x2, y1, x2, y2); // Second vertical
     }
 
-    bucketFill(x, y, c) {
-        this._bucketFill(this.getCell(x, y), c);
-    }
+    bucketFill(x, y, color) {
+        const queue = [];
+        queue.push(this.getCell(x, y));
 
-    // TODO: can be replaced with while loop for large canvases
-    _bucketFill(cell, color) {
-        if (cell.isVisited()) return;
-        if (!cell.isFilled()) {
+        while (queue.length) {
+            const cell = queue.pop();
+            if (cell.isVisited() || cell.isFilled()) continue;
             cell.setBucketFiller(color);
             const [x, y] = cell.getCoords();
 
-            // run recursively in each direction
-            this._bucketFill(this.getCell(x + 1, y), color);
-            this._bucketFill(this.getCell(x - 1, y), color);
-            this._bucketFill(this.getCell(x, y + 1), color);
-            this._bucketFill(this.getCell(x, y - 1), color);
+            // check cells in each direction
+            queue.push(this.getCell(x + 1, y));
+            queue.push(this.getCell(x - 1, y));
+            queue.push(this.getCell(x, y + 1));
+            queue.push(this.getCell(x, y - 1));
         }
+    }
+
+    markCell(x, y) {
+        const cell = this.getCell(x, y);
+        if (!cell.isFilled()) cell.setMarkedFiller();
     }
 
     _initCanvas() {
@@ -66,13 +66,6 @@ export default class Canvas {
                 this.canvasMap.set(cellKey, new Cell(w, h, isCeilFloorBorder, isLeftRightBorder));
             }
         }
-    }
-
-    _swap(v1, v2) {
-        let temp = v1;
-        v1 = v2;
-        v2 = temp;
-        return [v1, v2];
     }
 
     getHeight = () => this.height;
@@ -88,6 +81,8 @@ export default class Canvas {
         }
         return new Canvas(this.width - CANVAS_BORDER, this.height - CANVAS_BORDER, copyMap);
     }
+
+    _vector = (v1, v2) => ([Math.max(v1, v2), Math.max(v1, v2)]);
 }
 
 
